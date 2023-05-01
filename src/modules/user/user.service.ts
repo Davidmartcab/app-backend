@@ -22,6 +22,12 @@ export class UserService {
         return true;
     }
 
+    getUser(name: string) {
+        if(!this.comprobar(name)) return false;
+        this._data.users.filter(user => user.name === name)[0].lastReload = new Date();
+        return this._data.users.filter(user => user.name === name)[0];
+    }
+
     private comprobar(name: string):boolean {
         return this._data.users.filter(user => user.name === name).length > 0 ? true : false;
     }
