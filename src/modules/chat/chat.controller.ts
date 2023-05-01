@@ -1,4 +1,4 @@
-import { Controller, Post, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { ChatService } from './chat.service';
 
 @Controller('chat')
@@ -25,6 +25,13 @@ export class ChatController {
     getContacts(@Req() body, @Res() res) {
         let contacts = this._chat.getContacts(body.body.name);
         res.json({ contacts: contacts.contacts, code: contacts.code});
+        return res;
+    }
+
+    @Get('/:chatName/:name')
+    getNewMessages(@Req() body, @Res() res) {
+        let newMessages = this._chat.getNewMessages(body.params.chatName, body.params.name);
+        res.json({ code: newMessages ? 0 : 1 });
         return res;
     }
 }

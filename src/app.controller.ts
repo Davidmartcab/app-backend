@@ -27,8 +27,8 @@ export class AppController implements OnModuleInit {
   }
   
   @Post()
-  postApp() {
-
+  postApp(@Res() res) {
+    return res.json(this.appService.deleteApp());
   }
 
 }

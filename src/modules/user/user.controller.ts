@@ -17,8 +17,9 @@ export default class UserController {
 
     @Post('/new')
     postUser(@Req() body, @Res() res) {
-        if(this._user.newUser(body.body.name)) res.json({ message: 'User created', code: 0 });
-        else res.json({ message: 'User already exists', code: 1 });
+        let user = this._user.newUser(body.body.name);
+        if(user.code === 0) res.json({ message: 'User created', code: 0, user: user.User });
+        else res.json({ message: 'User already exists', code: 1, user: user.User });
         return res;
     }
 

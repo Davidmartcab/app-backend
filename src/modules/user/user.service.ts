@@ -8,17 +8,18 @@ export class UserService {
         private _data: DataService,
     ) {}
 
-    newUser(name: string) {
-        if(this.comprobar(name)) return false;
-
-        this._data.users.push(new User(name));
-        return true;
+    newUser(name: string): {User: User, code: number} {
+        let code = 0;
+        if(this.comprobar(name)) code = 1;
+        else this._data.users.push(new User(name));
+        return {User: this._data.users.filter(user => user.name === name)[0], code: code};
     }
 
     deleteUser(name: string) {
         if(!this.comprobar(name)) return false;
 
         this._data.users = this._data.users.filter(user => user.name !== name);
+        this._data.cleanChats();
         return true;
     }
 

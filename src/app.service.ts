@@ -10,6 +10,12 @@ export class AppService {
 
 
   getApp() {
-    return this._data.users;
+    return {users: this._data.users, chats: this._data.chats};
+  }
+
+  deleteApp() {
+    this._data.users = [];
+    this._data.chats = [];
+    return {users: this._data.users, chats: this._data.chats};
   }
 }
