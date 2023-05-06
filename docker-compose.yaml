@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    image: chat-app-backend:local
+    container_name: chat-app-backend
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    volumes:
+      - .:/app
