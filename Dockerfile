@@ -33,3 +33,5 @@ COPY --from=compile /src/build/dist/main.js index.js
 COPY --from=compile /src/build/node_modules node_modules
 
 ENTRYPOINT node .
+
+EXPOSE 4000
