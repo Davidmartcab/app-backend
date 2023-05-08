@@ -6,6 +6,7 @@ export class Message {
     to: string;
     message: string;
     date: Date;
+    deleted: boolean = false;
 
     constructor(message: string, from: string, to: string) {
         this._id = uuid();
