@@ -35,13 +35,11 @@ export class DataService {
         this.chats.forEach((chat, index) => {
             if(((new Date().getTime() - chat.date.getTime()) > (this.timeOut * this.timesForMessages)) && chat.deleted === false) {
                 this.chats[index].message = 'This message has been deleted at: ' + new Date().toLocaleString();
+                this.chats[index].date = new Date();
                 this.chats[index].deleted = true;
                 this.users.filter(user => user.name === this.chats[index].to)[0].setNewMessage(this.chats[index].from);
                 this.users.filter(user => user.name === this.chats[index].from)[0].setNewMessage(this.chats[index].to);
-                console.log('Deleting message', this.users);
-            }
-
-            if(((new Date().getTime() - chat.date.getTime()) > (this.timeOut * this.timesForMessages)) && chat.deleted === true) {
+            }else if(((new Date().getTime() - chat.date.getTime()) > (this.timeOut * this.timesForMessages)) && chat.deleted === true) {
                 this.chats.splice(index, 1);
             }
         })
