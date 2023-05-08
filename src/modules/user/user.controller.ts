@@ -30,4 +30,13 @@ export default class UserController {
         return res;
     }
 
+    @Get('/logout/:name')
+    logOutUser(@Req() body, @Res() res) {
+        console.log("Logout",body.params.name);
+        let user = this._user.logOutUser(body.params.name);
+        if(user) res.json({ message: 'User logOut', code: 0 });
+        else res.json({ message: 'User not found', code: 1 });
+        return res;
+    }
+
 }

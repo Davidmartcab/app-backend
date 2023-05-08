@@ -29,6 +29,12 @@ export class UserService {
         return this._data.users.filter(user => user.name === name)[0];
     }
 
+    logOutUser(name: string) {
+        if(!this.comprobar(name)) return false;
+        this._data.users.filter(user => user.name === name)[0].connected = false;
+        return true;
+    }
+
     private comprobar(name: string):boolean {
         return this._data.users.filter(user => user.name === name).length > 0 ? true : false;
     }

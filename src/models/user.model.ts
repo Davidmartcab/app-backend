@@ -5,15 +5,18 @@ export class User {
     name: string;
     lastReload: Date;
     newMessage: string[];
+    connected: boolean;
     
     constructor(name: string) {
         this._id = uuid();
         this.name = name;
         this.lastReload = new Date();
         this.newMessage = [];
+        this.connected = false;
     }
 
     reload() {
+        this.connected = true;
         this.lastReload = new Date();
     }
 
